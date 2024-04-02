@@ -1,13 +1,17 @@
 #include <iostream>
 #include "Eigen/Eigen"
 #include <iomanip>
+
 using namespace std;
 using namespace Eigen;
 
-Vector2d xstar = {-1, -1};
+
+VectorXd xstar = -1 * VectorXd::Ones(2);
 void palu(const Matrix2d &A,const Vector2d &b, unsigned int i){
     Vector2d x_palu = A.fullPivLu().solve(b);
     double relerr_x_palu = ((x_palu - xstar)*(1/xstar.norm())).norm();
+
+
     cout << "The relative error for the system " << i << " using PALU is " << setprecision(15) << scientific << relerr_x_palu << endl;
 
     return;
